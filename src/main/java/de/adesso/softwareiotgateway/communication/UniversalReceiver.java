@@ -23,10 +23,10 @@ public class UniversalReceiver implements Receiver{
 
     @Override
     public void subscribe(String uri, Consumer<JSONObject> jsonConsumer) {
-        for (CloudReceiver c : cloudReceiverList) {
+        for(CloudReceiver c : cloudReceiverList) {
             c.subscribe(uri, jsonConsumer);
         }
-        for (HardwareReceiver h : hardwareReceiverList) {
+        for(HardwareReceiver h : hardwareReceiverList){
             h.subscribe(uri, jsonConsumer);
         }
     }
