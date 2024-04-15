@@ -17,7 +17,7 @@ public class QueuingService {
     private final Set<String> hardwarePicos;
     private final Set<String> softwarePicos;
     private final Set<String> hardwarePicosWaitingForRecovery;
-    private final Map<String, String> pairedPicos;
+    private final Map<String, String> pairedPicos; // Cluster direkt ansprechen
     private final Logger logger = LoggerFactory.getLogger(QueuingService.class);
 
     @Autowired

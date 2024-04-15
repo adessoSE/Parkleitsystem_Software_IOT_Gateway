@@ -24,7 +24,7 @@ public class RecoveryService {
     public void checkForDuplicates(){
         while(queuingService.hasHardwarePicosWaitingForRecovery()){
             Pair<String, String> toRecover = queuingService.getFirstElementsWaitingForRecovery();
-            JSONObject infoMessage = new JSONObject().put("messageType", "info").put("hardwarePicoUri", toRecover.getFirst());
+            JSONObject infoMessage = new JSONObject().put("messageType", "info");
             cloudSender.send(toRecover.getSecond(), infoMessage);
         }
     }
