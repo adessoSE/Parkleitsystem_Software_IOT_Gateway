@@ -1,6 +1,9 @@
 package de.adesso.softwareiotgateway.service.pairing;
 
 import de.adesso.softwareiotgateway.communication.cloud.CloudSender;
+import de.adesso.softwareiotgateway.service.Pair;
+import de.adesso.softwareiotgateway.service.queuing.QueuingService;
+import de.adesso.softwareiotgateway.service.RecoveryService;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,7 +38,7 @@ class RecoveryServiceTest {
 
         Pair<String, String> p = new Pair<>("1/abc", UUID.randomUUID().toString());
 
-        when(queuingServiceMock.hasHardwarePicosWaitingForRecovery()).thenReturn(true, false);
+        when(queuingServiceMock.hasDuplicateHardwarePicos()).thenReturn(true, false);
         when(queuingServiceMock.getFirstElementsWaitingForRecovery()).thenReturn(p);
 
         ArgumentCaptor<JSONObject> captor = ArgumentCaptor.forClass(JSONObject.class);

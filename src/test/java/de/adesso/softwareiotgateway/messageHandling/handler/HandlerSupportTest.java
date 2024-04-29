@@ -1,9 +1,7 @@
 package de.adesso.softwareiotgateway.messageHandling.handler;
 
-import de.adesso.softwareiotgateway.messageHandling.MessageFactory;
-import de.adesso.softwareiotgateway.messageHandling.MessageType;
+import de.adesso.softwareiotgateway.messageHandling.SoftwareIotGatewayMessageType;
 import de.adesso.softwareiotgateway.messageHandling.message.Message;
-import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +18,7 @@ public class HandlerSupportTest {
 
     @Test
     void allTypesSupported(){
-        for(MessageType mt : MessageType.values()){
+        for(SoftwareIotGatewayMessageType mt : SoftwareIotGatewayMessageType.values()){
             Message m = () -> mt;
             boolean supported = false;
             for(MessageHandler h : messageHandlers){

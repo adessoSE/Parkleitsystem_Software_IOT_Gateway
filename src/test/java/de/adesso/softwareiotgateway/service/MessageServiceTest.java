@@ -1,8 +1,7 @@
 package de.adesso.softwareiotgateway.service;
 
 import de.adesso.softwareiotgateway.communication.Receiver;
-import de.adesso.softwareiotgateway.messageHandling.MessageFactory;
-import de.adesso.softwareiotgateway.messageHandling.MessageType;
+import de.adesso.softwareiotgateway.messageHandling.SoftwareIotGatewayMessageFactory;
 import de.adesso.softwareiotgateway.messageHandling.handler.MessageHandler;
 import de.adesso.softwareiotgateway.messageHandling.message.Message;
 import org.json.JSONObject;
@@ -77,8 +76,8 @@ class MessageServiceTest {
         Message m = mock(Message.class);
         MessageHandler h = mock(MessageHandler.class);
 
-        MockedStatic<MessageFactory> messageFactoryMock = mockStatic(MessageFactory.class);
-        messageFactoryMock.when(() -> MessageFactory.fromJson(any())).thenReturn(m);
+        MockedStatic<SoftwareIotGatewayMessageFactory> messageFactoryMock = mockStatic(SoftwareIotGatewayMessageFactory.class);
+        messageFactoryMock.when(() -> SoftwareIotGatewayMessageFactory.fromJson(any())).thenReturn(m);
 
         doReturn(h).when(messageServiceToTest).findSupportingMessageHandler(m);
 
@@ -95,8 +94,8 @@ class MessageServiceTest {
 
         JSONObject jsonMessage = new JSONObject();
 
-        MockedStatic<MessageFactory> messageFactoryMock = mockStatic(MessageFactory.class);
-        messageFactoryMock.when(() -> MessageFactory.fromJson(any())).thenThrow(new IllegalArgumentException());
+        MockedStatic<SoftwareIotGatewayMessageFactory> messageFactoryMock = mockStatic(SoftwareIotGatewayMessageFactory.class);
+        messageFactoryMock.when(() -> SoftwareIotGatewayMessageFactory.fromJson(any())).thenThrow(new IllegalArgumentException());
 
         assertThrows(IllegalArgumentException.class, () -> messageServiceToTest.handle(jsonMessage));
 

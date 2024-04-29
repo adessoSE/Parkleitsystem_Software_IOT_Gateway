@@ -2,6 +2,8 @@ package de.adesso.softwareiotgateway.service.pairing;
 
 
 import de.adesso.softwareiotgateway.configuration.HardwarePicoUtils;
+import de.adesso.softwareiotgateway.service.Pair;
+import de.adesso.softwareiotgateway.service.queuing.QueuingService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -175,7 +177,7 @@ class QueuingServiceTest {
 
         when(hardwarePicosWaitingForRecoveryMock.isEmpty()).thenReturn(false);
 
-        assertTrue(queuingServiceToTest.hasHardwarePicosWaitingForRecovery());
+        assertTrue(queuingServiceToTest.hasDuplicateHardwarePicos());
 
     }
 
@@ -184,7 +186,7 @@ class QueuingServiceTest {
 
         when(hardwarePicosWaitingForRecoveryMock.isEmpty()).thenReturn(true);
 
-        assertFalse(queuingServiceToTest.hasHardwarePicosWaitingForRecovery());
+        assertFalse(queuingServiceToTest.hasDuplicateHardwarePicos());
 
     }
 
@@ -230,7 +232,7 @@ class QueuingServiceTest {
         String hardwarePicoUri = "1/abc";
         String softwarePicoUri = UUID.randomUUID().toString();
 
-        when(queuingServiceToTest.hasHardwarePicosWaitingForRecovery()).thenReturn(true);
+        when(queuingServiceToTest.hasDuplicateHardwarePicos()).thenReturn(true);
         when(hardwarePicosWaitingForRecoveryMock.stream()).thenReturn(Stream.of(hardwarePicoUri));
         when(queuingServiceToTest.getSoftwareUriForHardwareUri(hardwarePicoUri)).thenReturn(softwarePicoUri);
 
@@ -242,7 +244,7 @@ class QueuingServiceTest {
     @Test
     void getFirstElementsWaitingForRecoveryNothingInQueue(){
 
-        when(queuingServiceToTest.hasHardwarePicosWaitingForRecovery()).thenReturn(false);
+        when(queuingServiceToTest.hasDuplicateHardwarePicos()).thenReturn(false);
 
         assertNull(queuingServiceToTest.getFirstElementsWaitingForRecovery());
 

@@ -1,6 +1,7 @@
-package de.adesso.softwareiotgateway.service.pairing;
+package de.adesso.softwareiotgateway.service;
 
-import de.adesso.softwareiotgateway.communication.cloud.CloudSender;
+import de.adesso.communication.messaging.UniversalSender;
+import de.adesso.softwareiotgateway.service.queuing.QueuingService;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,13 +12,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PairingService {
-    private final CloudSender cloudSender;
+    private final UniversalSender universalSender;
     private final QueuingService queuingService;
     private final Logger logger = LoggerFactory.getLogger(PairingService.class);
 
     @Autowired
-    public PairingService(CloudSender cloudSender, QueuingService queuingService) {
-        this.cloudSender = cloudSender;
+    public PairingService(UniversalSender universalSender, QueuingService queuingService) {
+        this.universalSender = universalSender;
         this.queuingService = queuingService;
     }
 
@@ -32,7 +33,7 @@ public class PairingService {
 
     void sendBindMessage(Pair<String, String> pair){
         JSONObject bindMessage = new JSONObject().put("messageType" , "bind").put("hardwarePicoUri", pair.getFirst());
-        cloudSender.send(pair.getSecond(), bindMessage);
+        universalSender.send(pair.getSecond(), bindMessage);
         logger.info("[Bound Software-Pico URI=" + pair.getSecond() + " to Hardware-Pico URI=" + pair.getFirst() + "]");
     }
 

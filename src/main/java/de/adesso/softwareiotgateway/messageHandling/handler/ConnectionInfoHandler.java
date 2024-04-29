@@ -1,14 +1,15 @@
 package de.adesso.softwareiotgateway.messageHandling.handler;
 
-import de.adesso.softwareiotgateway.service.pairing.RecoveryService;
-import de.adesso.softwareiotgateway.messageHandling.MessageType;
+import de.adesso.communication.messageHandling.Message;
+import de.adesso.communication.messageHandling.MessageHandler;
+import de.adesso.softwareiotgateway.service.RecoveryService;
+import de.adesso.softwareiotgateway.messageHandling.SoftwareIotGatewayMessageType;
 import de.adesso.softwareiotgateway.messageHandling.message.ConnectionInfoMessage;
-import de.adesso.softwareiotgateway.messageHandling.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ConnectionInfoHandler implements MessageHandler{
+public class ConnectionInfoHandler implements MessageHandler {
 
     private final RecoveryService recoveryService;
 
@@ -21,12 +22,12 @@ public class ConnectionInfoHandler implements MessageHandler{
     public <T extends Message> void handle(T message) {
         if(supports(message)){
             ConnectionInfoMessage connectionInfoMessage = (ConnectionInfoMessage) message;
-            recoveryService.recover(connectionInfoMessage.connectionStatus(), connectionInfoMessage.hardwarePicoUri(), connectionInfoMessage.softwarePicoUri());
+            recoveryService.recover(connectionInfoMessage.connectionStatus(), connectionInfoMessage.softwarePicoUri());
         }
     }
 
     @Override
     public <T extends Message> boolean supports(T message) {
-        return message.getMessageType().equals(MessageType.CONNECTION_INFO);
+        return message.getMessageType().equals(SoftwareIotGatewayMessageType.CONNECTION_INFO.name());
     }
 }

@@ -1,11 +1,13 @@
 package de.adesso.softwareiotgateway.messageHandling.message;
 
-import de.adesso.softwareiotgateway.messageHandling.MessageType;
+import de.adesso.communication.messageHandling.Message;
+import de.adesso.softwareiotgateway.messageHandling.SoftwareIotGatewayMessageType;
 
-public record ConnectionInfoMessage(String hardwarePicoUri, String softwarePicoUri, String connectionStatus) implements Message {
+
+public record ConnectionInfoMessage(String softwarePicoUri, String connectionStatus) implements Message {
 
     @Override
-    public MessageType getMessageType() {
-        return MessageType.CONNECTION_INFO;
+    public String getMessageType() {
+        return SoftwareIotGatewayMessageType.CONNECTION_INFO.name();
     }
 }

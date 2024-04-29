@@ -1,4 +1,4 @@
-package de.adesso.softwareiotgateway.service.pairing;
+package de.adesso.softwareiotgateway.service;
 
 import java.util.Objects;
 

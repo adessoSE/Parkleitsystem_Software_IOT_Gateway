@@ -1,6 +1,9 @@
 package de.adesso.softwareiotgateway.service.pairing;
 
 import de.adesso.softwareiotgateway.communication.cloud.CloudSender;
+import de.adesso.softwareiotgateway.service.Pair;
+import de.adesso.softwareiotgateway.service.PairingService;
+import de.adesso.softwareiotgateway.service.queuing.QueuingService;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

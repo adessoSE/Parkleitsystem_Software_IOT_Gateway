@@ -1,10 +1,9 @@
 package de.adesso.softwareiotgateway.messageHandling.handler;
 
-import de.adesso.softwareiotgateway.service.pairing.PairingService;
-import de.adesso.softwareiotgateway.messageHandling.MessageType;
+import de.adesso.softwareiotgateway.messageHandling.SoftwareIotGatewayMessageType;
 import de.adesso.softwareiotgateway.messageHandling.message.HardwarePicoRegistrationMessage;
 import de.adesso.softwareiotgateway.messageHandling.message.Message;
-import de.adesso.softwareiotgateway.service.pairing.QueuingService;
+import de.adesso.softwareiotgateway.service.queuing.QueuingService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +31,7 @@ class HardwarePicoRegistrationHandlerTest {
     void supportsTrue(){
 
         Message m = mock(Message.class);
-        when(m.getMessageType()).thenReturn(MessageType.REGISTER_HP);
+        when(m.getMessageType()).thenReturn(SoftwareIotGatewayMessageType.REGISTER_HP);
 
         assertTrue(hardwarePicoRegistrationHandlerToTest.supports(m));
     }
@@ -40,8 +39,8 @@ class HardwarePicoRegistrationHandlerTest {
     @Test
     void supportsFalse(){
 
-        for(MessageType mt : MessageType.values()){
-            if(!mt.equals(MessageType.REGISTER_HP)){
+        for(SoftwareIotGatewayMessageType mt : SoftwareIotGatewayMessageType.values()){
+            if(!mt.equals(SoftwareIotGatewayMessageType.REGISTER_HP)){
                 Message m = mock(Message.class);
                 when(m.getMessageType()).thenReturn(mt);
 
@@ -67,8 +66,8 @@ class HardwarePicoRegistrationHandlerTest {
     @Test
     void handleUnsupported(){
 
-        for(MessageType mt : MessageType.values()){
-            if(!mt.equals(MessageType.REGISTER_HP)){
+        for(SoftwareIotGatewayMessageType mt : SoftwareIotGatewayMessageType.values()){
+            if(!mt.equals(SoftwareIotGatewayMessageType.REGISTER_HP)){
                 Message m = mock(Message.class);
                 when(m.getMessageType()).thenReturn(mt);
 

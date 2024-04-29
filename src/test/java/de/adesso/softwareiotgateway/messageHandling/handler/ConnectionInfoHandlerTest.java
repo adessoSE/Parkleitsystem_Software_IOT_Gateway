@@ -1,7 +1,7 @@
 package de.adesso.softwareiotgateway.messageHandling.handler;
 
-import de.adesso.softwareiotgateway.service.pairing.RecoveryService;
-import de.adesso.softwareiotgateway.messageHandling.MessageType;
+import de.adesso.softwareiotgateway.service.RecoveryService;
+import de.adesso.softwareiotgateway.messageHandling.SoftwareIotGatewayMessageType;
 import de.adesso.softwareiotgateway.messageHandling.message.ConnectionInfoMessage;
 import de.adesso.softwareiotgateway.messageHandling.message.Message;
 import org.junit.jupiter.api.BeforeAll;
@@ -34,7 +34,7 @@ class ConnectionInfoHandlerTest {
     void supportsTrue(){
 
         Message m = mock(Message.class);
-        when(m.getMessageType()).thenReturn(MessageType.CONNECTION_INFO);
+        when(m.getMessageType()).thenReturn(SoftwareIotGatewayMessageType.CONNECTION_INFO);
 
         assertTrue(connectionInfoHandlerToTest.supports(m));
     }
@@ -42,8 +42,8 @@ class ConnectionInfoHandlerTest {
     @Test
     void supportsFalse(){
 
-        for(MessageType mt : MessageType.values()){
-            if(!mt.equals(MessageType.CONNECTION_INFO)){
+        for(SoftwareIotGatewayMessageType mt : SoftwareIotGatewayMessageType.values()){
+            if(!mt.equals(SoftwareIotGatewayMessageType.CONNECTION_INFO)){
                 Message m = mock(Message.class);
                 when(m.getMessageType()).thenReturn(mt);
 
@@ -71,8 +71,8 @@ class ConnectionInfoHandlerTest {
     @Test
     void handleUnsupported(){
 
-        for(MessageType mt : MessageType.values()){
-            if(!mt.equals(MessageType.CONNECTION_INFO)){
+        for(SoftwareIotGatewayMessageType mt : SoftwareIotGatewayMessageType.values()){
+            if(!mt.equals(SoftwareIotGatewayMessageType.CONNECTION_INFO)){
                 Message m = mock(Message.class);
                 when(m.getMessageType()).thenReturn(mt);
 

@@ -9,13 +9,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
-import static de.adesso.softwareiotgateway.messageHandling.MessageFactory.fromJson;
+import static de.adesso.softwareiotgateway.messageHandling.SoftwareIotGatewayMessageFactory.fromJson;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class MessageFactoryTest {
+class SoftwareIotGatewayMessageFactoryTest {
 
     @Test
     void fromJsonSPRegister(){

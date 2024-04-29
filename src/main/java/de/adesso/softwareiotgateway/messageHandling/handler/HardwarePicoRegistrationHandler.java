@@ -1,15 +1,15 @@
 package de.adesso.softwareiotgateway.messageHandling.handler;
 
-import de.adesso.softwareiotgateway.service.pairing.PairingService;
-import de.adesso.softwareiotgateway.messageHandling.MessageType;
+import de.adesso.communication.messageHandling.Message;
+import de.adesso.communication.messageHandling.MessageHandler;
+import de.adesso.softwareiotgateway.messageHandling.SoftwareIotGatewayMessageType;
 import de.adesso.softwareiotgateway.messageHandling.message.HardwarePicoRegistrationMessage;
-import de.adesso.softwareiotgateway.messageHandling.message.Message;
-import de.adesso.softwareiotgateway.service.pairing.QueuingService;
+import de.adesso.softwareiotgateway.service.queuing.QueuingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class HardwarePicoRegistrationHandler implements MessageHandler{
+public class HardwarePicoRegistrationHandler implements MessageHandler {
 
     private final QueuingService queuingService;
 
@@ -27,6 +27,6 @@ public class HardwarePicoRegistrationHandler implements MessageHandler{
 
     @Override
     public <T extends Message> boolean supports(T message) {
-        return message.getMessageType().equals(MessageType.REGISTER_HP);
+        return message.getMessageType().equals(SoftwareIotGatewayMessageType.REGISTER_HP.name());
     }
 }

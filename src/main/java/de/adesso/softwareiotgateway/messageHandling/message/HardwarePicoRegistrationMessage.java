@@ -1,11 +1,12 @@
 package de.adesso.softwareiotgateway.messageHandling.message;
 
-import de.adesso.softwareiotgateway.messageHandling.MessageType;
+import de.adesso.communication.messageHandling.Message;
+import de.adesso.softwareiotgateway.messageHandling.SoftwareIotGatewayMessageType;
 
 public record HardwarePicoRegistrationMessage(String hardwarePicoUri) implements Message {
 
     @Override
-    public MessageType getMessageType() {
-        return MessageType.REGISTER_HP;
+    public String getMessageType() {
+        return SoftwareIotGatewayMessageType.REGISTER_HP.name();
     }
 }
